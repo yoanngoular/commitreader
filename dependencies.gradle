@@ -36,6 +36,7 @@ versions.mockito = "2.25.0"
 versions.mockito_all = "1.10.19"
 versions.mockito_android = "2.25.0"
 versions.navigation = "2.2.0-rc03"
+versions.picasso = "2.71828"
 versions.retrofit = "2.6.2"
 versions.room = "2.2.2"
 versions.rx_android = "2.1.1"
@@ -151,6 +152,7 @@ navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-p
 deps.navigation = navigation
 
 deps.gson = "com.google.code.gson:gson:$versions.gson"
+deps.picasso = "com.squareup.picasso:picasso:$versions.picasso"
 
 ext.deps = deps
 

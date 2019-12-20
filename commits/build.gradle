@@ -65,4 +65,6 @@ dependencies {
     kapt deps.dagger.compiler
 
     implementation deps.gson
+
+    implementation deps.picasso
 }
