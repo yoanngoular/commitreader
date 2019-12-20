@@ -2,7 +2,10 @@ package com.ygoular.commits.data.model
 
 import com.google.gson.annotations.SerializedName
 
-
+/**
+ * Object representing the JSON response of the GitHub API
+ *
+ */
 data class CommitResponse(
     @SerializedName("sha")
     var mSha: String,
@@ -17,16 +20,16 @@ data class CommitResponse(
     @SerializedName("comments_url")
     var mCommentsUrl: String,
     @SerializedName("author")
-    var mAuthor: Committer,
+    var mAuthor: Committer?,
     @SerializedName("committer")
-    var mCommitter: Committer,
+    var mCommitter: Committer?,
     @SerializedName("parents")
     var mParents: List<Parent>? = null
 ) {
 
     data class CommitAuthor(
         @SerializedName("name")
-        var mName: String,
+        var mName: String?,
         @SerializedName("email")
         var mEmail: String,
         @SerializedName("date")
@@ -74,7 +77,7 @@ data class CommitResponse(
 
     data class Commit(
         @SerializedName("author")
-        var mCommitAuthor: CommitAuthor,
+        var mCommitAuthor: CommitAuthor?,
         @SerializedName("committer")
         var mCommitCommitter: CommitCommitter,
         @SerializedName("message")
