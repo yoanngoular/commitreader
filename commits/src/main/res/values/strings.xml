@@ -1,7 +1,16 @@
 <resources>
     <string name="app_name">Commits</string>
 
+    <string name="shared_pref_name">commits-shared-preferences</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="ok">OK</string>
     <string name="update">Update</string>
+    <string name="change_repository">Change repository</string>
+    <string name="change_repository_message">Enter a repository to fetch its last commits</string>
+
+    <string name="default_repository">torvalds/linux</string>
 
     <string name="default_commit_fragment_text">CommitsFragment</string>
 
