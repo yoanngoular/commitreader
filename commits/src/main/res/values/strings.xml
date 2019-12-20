@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Commits</string>
+
+    <string name="default_commit_fragment_text">CommitsFragment</string>
+</resources>
