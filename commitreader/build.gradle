@@ -55,16 +55,13 @@ dependencies {
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
 
-    // Rx
-    implementation deps.rx.java
-    implementation deps.rx.android
-    implementation deps.rx.kotlin
-
     // Dagger 2
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler
 
+    // Serialization
     implementation deps.gson
 
+    // Images
     implementation deps.picasso
 }

@@ -25,13 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="@dimen/padding_large"
+        android:layout_marginEnd="@dimen/padding_large"
         android:gravity="center"
-        android:padding="8dp"
+        android:padding="@dimen/padding_small"
         android:text="@string/error_retrieving_commits"
         android:textColor="@color/colorText"
-        android:textSize="28sp"
+        android:textSize="@dimen/text_very_large"
         android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

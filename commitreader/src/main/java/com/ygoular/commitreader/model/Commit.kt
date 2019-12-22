@@ -9,6 +9,10 @@ data class Commit(
     val mMessage: String,
     val mSha1: String
 ) {
+
+    /**
+     * Utility functions to create Commit objects from the API CommitResponse object
+     */
     companion object {
         private fun fromCommitResponse(commitResponse: CommitResponse): Commit {
             return Commit(

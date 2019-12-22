@@ -31,8 +31,13 @@ class CommitAdapter : ListAdapter<Commit, CommitAdapter.CommitHolder>(DIFF_CALLB
             }
         }
 
+        // If commit message takes more than 60 lines to be displayed, it won't be fully displayed
+        // by choice
         private const val EXPANDED_VALUE = 60
         private const val SHRINKED_VALUE = 3
+        private const val IMAGE_SIZE = 180
+        private const val ANIMATION_DURATION = 500L
+        private const val MAX_LINES_PROPERTY = "maxLines"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommitHolder {
@@ -52,12 +57,8 @@ class CommitAdapter : ListAdapter<Commit, CommitAdapter.CommitHolder>(DIFF_CALLB
             holder.mCommitTitle.text = mTitle
             holder.mCommitMessage.text = mMessage
             val picasso = Picasso.get()
-            val imageSize = 180
-            if (mAuthorAvatarUrl.isEmpty()) {
-                picasso.load(R.drawable.ic_launcher_background).resize(imageSize, imageSize)
-                    .into(holder.mCommitAvatar)
-            } else {
-                picasso.load(mAuthorAvatarUrl).resize(imageSize, imageSize)
+            if (mAuthorAvatarUrl.isNotEmpty()) { // Placeholder image otherwise
+                picasso.load(mAuthorAvatarUrl).resize(IMAGE_SIZE, IMAGE_SIZE)
                     .into(holder.mCommitAvatar)
             }
         }
@@ -71,6 +72,7 @@ class CommitAdapter : ListAdapter<Commit, CommitAdapter.CommitHolder>(DIFF_CALLB
         var mCommitAvatar: ImageView = mView.image_avatar
 
         init {
+            // Expand/Shrink animation when clicking on an item
             mView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     if (mView.text_message.lineCount == SHRINKED_VALUE) {
@@ -85,10 +87,10 @@ class CommitAdapter : ListAdapter<Commit, CommitAdapter.CommitHolder>(DIFF_CALLB
         private fun animateNewMaxLines(mView: View, maxLines: Int) {
             val animation = ObjectAnimator.ofInt(
                 mView.text_message,
-                "maxLines",
+                MAX_LINES_PROPERTY,
                 maxLines
             )
-            animation.duration = 500
+            animation.duration = ANIMATION_DURATION
             animation.start()
         }
     }

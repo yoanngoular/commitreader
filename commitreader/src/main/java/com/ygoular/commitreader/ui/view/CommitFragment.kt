@@ -49,7 +49,7 @@ class CommitFragment : Fragment() {
         recycler_view_commits.setHasFixedSize(true)
         recycler_view_commits.adapter = mCommitAdapter
 
-        layout_refresh_commits.setOnRefreshListener { fetchCommits() }
+        layout_refresh_commits.setOnRefreshListener { refreshData() }
 
         refreshData()
     }
@@ -78,7 +78,7 @@ class CommitFragment : Fragment() {
                 .setPositiveButton(getString(R.string.done)) { _, _ ->
                     val repository = editText.text.toString()
                     mSharedPreferences.edit().putString(mPrefRepository, repository).apply()
-                    fetchCommits()
+                    refreshData()
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .create()
