@@ -64,4 +64,8 @@ dependencies {
 
     // Images
     implementation deps.picasso
+
+    // Testing
+    implementation deps.junit
+    androidTestImplementation deps.atsl.junit
 }
