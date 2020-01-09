@@ -5,7 +5,6 @@
 
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
-    <string name="ok">OK</string>
     <string name="update">Update</string>
     <string name="change_repository">Change repository</string>
     <string name="change_repository_message">Enter a repository to fetch its last commits</string>
@@ -29,7 +28,7 @@
       mm/memory.c: add apply_to_existing_page_range() helper
       kasan: fix crashes on access to memory mapped by vm_map_ram(), mSha1=7e0165b2f1a912a06e381e91f0f4e495f4ac3736)</string>
 
-    <string name="error_retrieving_commits">Error while retrieving commits</string>
+    <string name="error_no_commits_available">No commits available for repository</string>
 
     <string name="cd_author_avatar">Author avatar</string>
 </resources>

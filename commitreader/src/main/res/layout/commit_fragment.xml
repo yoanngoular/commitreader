@@ -29,7 +29,7 @@
         android:layout_marginEnd="@dimen/padding_large"
         android:gravity="center"
         android:padding="@dimen/padding_small"
-        android:text="@string/error_retrieving_commits"
+        android:text="@string/error_no_commits_available"
         android:textColor="@color/colorText"
         android:textSize="@dimen/text_very_large"
         android:visibility="gone" />

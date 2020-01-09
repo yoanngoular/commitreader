@@ -8,10 +8,11 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.ygoular.commitreader.BaseApplication
 import com.ygoular.commitreader.R
+import com.ygoular.commitreader.model.Commit
 import com.ygoular.commitreader.ui.adapter.CommitAdapter
 import com.ygoular.commitreader.viewmodel.CommitViewModel
 import kotlinx.android.synthetic.main.commit_fragment.*
@@ -91,33 +92,27 @@ class CommitFragment : Fragment() {
             mPrefDefaultRepository
         ).toString()
     ) {
-        mViewModel.getCommitList(
-            repository,
-            onSuccess = { list ->
-                mCommitAdapter.submitList(list)
-                adaptUi()
-            },
-            onError = {
-                with(
-                    Snackbar.make(
-                        layout_commits,
-                        "${getString(R.string.error_retrieving_commits)} from ${it.mParam} repository",
-                        Snackbar.LENGTH_INDEFINITE
-                    )
-                ) {
-                    setAction(getString(R.string.ok)) { this.dismiss() }
-                    show()
-                }
-                adaptUi(it.mMessage)
+        mViewModel.getCommitList(repository)
+            .observe(viewLifecycleOwner, Observer<List<Commit>> { commitList ->
+                mCommitAdapter.submitList(commitList)
+                adaptUi(
+                    if (commitList.isNullOrEmpty())
+                        "${getString(R.string.error_no_commits_available)} $repository"
+                    else ""
+                )
             })
     }
 
     private fun adaptUi(error: String = "") {
-        text_error_retrieving_commits.text = error
-        text_error_retrieving_commits.visibility =
-            if (error.isNotEmpty()) View.VISIBLE else View.GONE
-        recycler_view_commits.visibility = if (error.isNotEmpty()) View.GONE else View.VISIBLE
         layout_refresh_commits.isRefreshing = false
+        if (error.isNotEmpty()) {
+            text_error_retrieving_commits.text = error
+            text_error_retrieving_commits.visibility = View.VISIBLE
+            recycler_view_commits.visibility = View.GONE
+        } else {
+            text_error_retrieving_commits.visibility = View.GONE
+            recycler_view_commits.visibility = View.VISIBLE
+        }
     }
 
     private fun refreshData() {
